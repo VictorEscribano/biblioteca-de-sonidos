@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="cBg" x1=".2" y1="0" x2=".8" y2="1">
+      <stop offset="0" stop-color="#252c3c"/>
+      <stop offset=".55" stop-color="#141922"/>
+      <stop offset="1" stop-color="#0a0c10"/>
+    </linearGradient>
+    <linearGradient id="cLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffd07a"/>
+      <stop offset=".6" stop-color="#ffab3d"/>
+      <stop offset="1" stop-color="#e88a15"/>
+    </linearGradient>
+    <radialGradient id="cGlow" cx=".42" cy=".5" r=".55">
+      <stop offset="0" stop-color="#ffab3d" stop-opacity=".32"/>
+      <stop offset="1" stop-color="#ffab3d" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cEdge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".22"/>
+      <stop offset=".45" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="1.5" y="1.5" width="61" height="61" rx="15" fill="url(#cBg)"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="15" fill="url(#cGlow)"/>
+
+  <!-- Trazo continuo de pulso: una sola forma, así que es lo que mejor
+       sobrevive a 16-24 px, donde las barras sueltas se juntan. -->
+  <path d="M8 32h6.5l4-10.5 5.5 25 6-34.5 6 44 5.5-30 4.5 6H56"
+        fill="none" stroke="url(#cLine)" stroke-width="3.4"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="1.5" y="1.5" width="61" height="61" rx="15" fill="url(#cEdge)"/>
+  <rect x="2.25" y="2.25" width="59.5" height="59.5" rx="14.25"
+        fill="none" stroke="#4a5568" stroke-opacity=".55" stroke-width="1.5"/>
+</svg>

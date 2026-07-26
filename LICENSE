@@ -1,0 +1,36 @@
+MIT License
+
+Copyright (c) 2026 Víctor Escribano
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+NOTA SOBRE EL AUDIO / NOTE ON AUDIO CONTENT
+
+Esta licencia MIT cubre únicamente el código de esta herramienta. NO cubre
+ningún archivo de audio. Los sonidos que descargues con `install.sh` se rigen
+por la licencia de su proveedor original (Sonniss GDC, Kenney.nl CC0,
+Freesound CC0/CC-BY, etc.). Revisa `CREDITS.md`, generado en cada indexado,
+para saber qué exige atribución.
+
+This MIT license covers only the code of this tool. It does NOT cover any
+audio file. Sounds downloaded via `install.sh` remain under their original
+providers' licenses. See the generated `CREDITS.md` for attribution
+requirements.

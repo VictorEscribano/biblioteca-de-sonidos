@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="bBg" x1=".2" y1="0" x2=".8" y2="1">
+      <stop offset="0" stop-color="#252c3c"/>
+      <stop offset=".55" stop-color="#141922"/>
+      <stop offset="1" stop-color="#0a0c10"/>
+    </linearGradient>
+    <linearGradient id="bRing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffd07a"/>
+      <stop offset=".5" stop-color="#ffab3d"/>
+      <stop offset="1" stop-color="#e07a12"/>
+    </linearGradient>
+    <radialGradient id="bGlow" cx=".5" cy=".5" r=".5">
+      <stop offset=".3" stop-color="#ffab3d" stop-opacity=".30"/>
+      <stop offset="1" stop-color="#ffab3d" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bEdge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".22"/>
+      <stop offset=".45" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="1.5" y="1.5" width="61" height="61" rx="15" fill="url(#bBg)"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="15" fill="url(#bGlow)"/>
+
+  <!-- Surcos concéntricos: sugiere disco/librería. Los arcos abiertos por
+       los lados evitan que a tamaño pequeño se empaste en una mancha. -->
+  <g fill="none" stroke="url(#bRing)" stroke-linecap="round">
+    <circle cx="32" cy="32" r="20.5" stroke-width="2.6"
+            stroke-dasharray="46 15" transform="rotate(-40 32 32)"/>
+    <circle cx="32" cy="32" r="14.5" stroke-width="2.6"
+            stroke-dasharray="33 12" transform="rotate(115 32 32)"/>
+    <circle cx="32" cy="32" r="8.5" stroke-width="2.6"
+            stroke-dasharray="20 9" transform="rotate(-15 32 32)"/>
+  </g>
+  <circle cx="32" cy="32" r="3.4" fill="url(#bRing)"/>
+
+  <rect x="1.5" y="1.5" width="61" height="61" rx="15" fill="url(#bEdge)"/>
+  <rect x="2.25" y="2.25" width="59.5" height="59.5" rx="14.25"
+        fill="none" stroke="#4a5568" stroke-opacity=".55" stroke-width="1.5"/>
+</svg>

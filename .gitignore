@@ -1,0 +1,41 @@
+# ============================================================
+#  NUNCA subir: credenciales
+# ============================================================
+_cache/freesound_token.json
+_cache/freesound_creds.json
+*token*.json
+*creds*.json
+.env
+.env.*
+
+# ============================================================
+#  Contenido de audio y datos generados
+#  La biblioteca son decenas de GB de sonidos con licencias de
+#  terceros. El repositorio es solo la herramienta: cada quien
+#  descarga su propio material con install.sh.
+# ============================================================
+library/
+_staging/
+exports/
+index.json
+CREDITS.md
+
+# Cachés y registros locales
+_cache/
+!_cache/.gitkeep
+
+# ============================================================
+#  Sistema
+# ============================================================
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+node_modules/
+*.log
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/

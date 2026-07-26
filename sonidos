@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# Lanzador de la biblioteca de sonidos.
+#   ./sonidos            -> abre la interfaz web
+#   ./sonidos index      -> reconstruye el índice tras añadir sonidos nuevos
+#   ./sonidos estado     -> resumen de lo que hay
+set -e
+cd "$(dirname "$0")"
+
+case "${1:-abrir}" in
+  abrir)
+    exec python3 tools/serve.py --port "${2:-7777}"
+    ;;
+  icono)
+    exec bash tools/install_desktop.sh
+    ;;
+  add|anadir|añadir)
+    shift
+    exec python3 tools/add_pack.py "$@"
+    ;;
+  index|indexar)
+    python3 tools/build_index.py
+    ;;
+  estado)
+    echo "Biblioteca: $(pwd)"
+    if [ -f index.json ]; then
+      python3 - <<'PY'
+import json
+d = json.load(open('index.json'))
+print(f"  {d['total']:,} sonidos  ·  {d['bytes']/1024**3:.2f} GB".replace(',', '.'))
+print()
+for c in d['categories']:
+    if c['count']:
+        print(f"  {c['emoji']} {c['label']:26s} {c['count']:6,d}".replace(',', '.'))
+PY
+    else
+      echo "  (sin índice: ejecuta ./sonidos index)"
+    fi
+    echo
+    echo "Descarga en curso:"
+    tail -1 _cache/dl_gamesounds.log 2>/dev/null || echo "  ninguna"
+    ;;
+  *)
+    echo "Uso: ./sonidos [abrir|index|estado|icono|add <zip|carpeta> --vendor X]"
+    exit 1
+    ;;
+esac
