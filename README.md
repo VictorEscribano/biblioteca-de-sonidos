@@ -1,58 +1,61 @@
 <div align="center">
 
-# Biblioteca de Sonidos
+# Sound Library
 
-**Tu propia librería de efectos de sonido en local, con buscador en español, para DaVinci Resolve y cualquier editor.**
+**Your own local sound-effects library, with a search engine that speaks your language — for DaVinci Resolve and any other editor.**
 
-Sin suscripciones. Sin subir nada a la nube. Todo con licencia comercial verificable.
+No subscriptions. Nothing uploaded to the cloud. Every sound commercially licensed and traceable.
 
-[![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-ffab3d.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-ffab3d.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/python-3.8+-4b8bbe.svg)
-![Sin dependencias JS](https://img.shields.io/badge/frontend-sin%20dependencias-2ea44f.svg)
+![No JS dependencies](https://img.shields.io/badge/frontend-zero%20dependencies-2ea44f.svg)
+
+![The app in use](docs/screenshot.jpg)
+
+<sub>Searching `caballo` — Spanish for *horse* — across a library whose filenames are entirely in English.</sub>
 
 </div>
 
 ---
 
-## Qué es
+## What this is
 
-Las plataformas de efectos de sonido cuestan entre 10 y 30 € al mes, y en cuanto
-dejas de pagar pierdes el derecho a usar lo que ya habías puesto en tus vídeos.
+Sound-effects platforms charge €10–30 a month, and the day you stop paying you
+lose the right to keep using what you already put in your videos.
 
-Esto es la alternativa: un script descarga miles de sonidos **gratuitos y de uso
-comercial permanente**, los unifica en una sola librería con metadatos, y te da
-una interfaz web local para buscarlos, escucharlos y llevártelos al editor.
+This is the alternative. A script downloads thousands of **free, permanently
+commercial-use** sounds, merges them into one library with metadata, and gives
+you a local web app to search, audition and move them into your editor.
 
-Una instalación típica deja **~5.000 sonidos y 15 horas de audio en unos 20 GB**.
+A typical install lands **~5,000 sounds and 16 hours of audio in about 24 GB**.
 
-### Qué tiene
+### Features
 
-- **Buscador que entiende español** aunque los archivos estén en inglés. Buscas
-  `caballo` y encuentra `Hoof_Gallop`, `Pony Whinny` y `FEETHors_Draft Horse`.
-  Tolera prefijos (`caball`) y erratas (`caballlo`).
-- **12 categorías** clasificadas automáticamente: impactos, whooshes, interfaz,
-  ambientes, foley, voz, cinemático, armas, vehículos, magia y ciencia ficción,
-  agua, animales.
-- **Sonidos parecidos** por similitud vectorial: desde un galope te saca el resto
-  de cascos y trotes aunque no compartan una sola palabra en el nombre.
-- **Reproductor** con forma de onda, seek, bucle y atajos de teclado.
-- **Favoritos** que se exportan a una carpeta lista para arrastrar al Media Pool
-  de Resolve.
-- **Licencias siempre a la vista**, filtrables, con `CREDITS.md` autogenerado
-  para lo que exige atribución.
-- **Añade tus propias librerías** desde la interfaz o por terminal.
+- **Search that speaks Spanish** even though the files are in English. Type
+  `caballo` and it finds `Hoof_Gallop`, `Pony Whinny` and `FEETHors_Draft
+  Horse`. Handles partial words (`caball`) and typos (`caballlo`).
+- **12 auto-classified categories**: impacts, whooshes, UI, ambiences, foley,
+  voice, cinematic, weapons, vehicles, magic & sci-fi, water, animals.
+- **Similar sounds** via vector similarity — from one gallop it surfaces every
+  other hoof and trot, even with no words in common.
+- **Player** with waveform, seeking, looping and keyboard shortcuts.
+- **Favourites** exported to a folder you drag straight into Resolve's Media Pool.
+- **Licences always visible** and filterable, with an auto-generated
+  `CREDITS.md` for anything requiring attribution.
+- **Add your own libraries** from the interface or the terminal.
 
 ---
 
-## Instalación
+## Install
 
-Necesitas **Python 3.8+** y **ffmpeg**. En Debian/Ubuntu:
+You need **Python 3.8+** and **ffmpeg**:
 
 ```bash
-sudo apt install python3 ffmpeg git
+sudo apt install python3 ffmpeg git      # Debian/Ubuntu
+brew install python3 ffmpeg git          # macOS
 ```
 
-Después:
+Then:
 
 ```bash
 git clone https://github.com/VictorEscribano/biblioteca-de-sonidos.git
@@ -60,89 +63,88 @@ cd biblioteca-de-sonidos
 ./install.sh
 ```
 
-El instalador comprueba dependencias y espacio, descarga las librerías, indexa
-todo e instala el lanzador de escritorio. Tarda entre 30 min y 2 h según tu
-conexión: son ~20 GB.
+The installer checks dependencies and disk space, downloads the libraries,
+indexes everything and installs the desktop launcher. Expect 30 min to 2 h
+depending on your connection — it's ~20 GB.
 
 ```bash
-./install.sh --budget-gb 5      # instalación ligera
-./install.sh --skip-download    # solo indexar lo que ya tengas
-./install.sh --no-desktop       # sin icono de escritorio
+./install.sh --budget-gb 5      # lightweight install
+./install.sh --skip-download    # only index what you already have
+./install.sh --no-desktop       # skip the desktop icon
 ```
 
-La descarga es **reanudable**: si la cortas con Ctrl-C, al relanzar sigue donde
-iba.
+Downloads are **resumable**: Ctrl-C and relaunch picks up where it left off.
 
 ---
 
-## Uso
+## Usage
 
-Abre el icono **Biblioteca de Sonidos**, o desde terminal:
+Open the **Sound Library** icon, or from a terminal:
 
 ```bash
-./sonidos            # abre http://sfx.localhost:7777
-./sonidos estado     # resumen de lo que tienes
-./sonidos index      # reindexa tras añadir sonidos
-./sonidos icono      # reinstala el lanzador de escritorio
+./sonidos            # opens http://sfx.localhost:7777
+./sonidos estado     # summary of what you have
+./sonidos index      # reindex after adding sounds
+./sonidos icono      # reinstall the desktop launcher
 ```
 
-| Acción | Cómo |
+| Action | How |
 |---|---|
-| Buscar | Escribe, o pulsa <kbd>/</kbd>. Español o inglés |
-| Reproducir | Clic en la fila, o <kbd>espacio</kbd> |
-| Navegar | <kbd>↑</kbd> <kbd>↓</kbd> entre resultados |
-| Favorito | Estrella de la fila, o <kbd>F</kbd> |
-| Ver parecidos | Icono de nodos de la fila |
-| Copiar ruta | Icono de copiar de la fila |
+| Search | Type, or press <kbd>/</kbd> |
+| Play | Click a row, or <kbd>space</kbd> |
+| Navigate | <kbd>↑</kbd> <kbd>↓</kbd> through results |
+| Favourite | Star on the row, or <kbd>F</kbd> |
+| Find similar | Node icon on the row |
+| Copy path | Copy icon on the row |
 
-### Llevar sonidos a DaVinci Resolve
+### Getting sounds into DaVinci Resolve
 
-**Toda la librería, siempre disponible:** en Resolve, panel *Media Storage*,
-navega hasta `library/` y añádela a favoritos. La tendrás en todos los
-proyectos sin reimportar.
+**The whole library, always available:** in Resolve's *Media Storage* panel,
+browse to `library/` and add it as a favourite. It'll be in every project
+without reimporting.
 
-**Una selección concreta:** marca favoritos, pulsa *Exportar favoritos* y
-arrastra la carpeta resultante al Media Pool. Usa enlaces duros, así que no
-duplica espacio en disco.
+**A specific selection:** star what you want, hit *Export favourites*, and drag
+the resulting folder into the Media Pool. It uses hard links, so it costs no
+extra disk space.
 
-### Añadir tus propias librerías
+### Adding your own libraries
 
-Desde la interfaz, botón **«Añadir librería»**: indicas la ruta de una carpeta
-o un `.zip` que ya tengas en el disco, el proveedor y la licencia. Aparecerá
-como su propia sección en *Fuentes*.
+From the interface, hit **"Add library"**: point it at a folder or `.zip`
+already on your disk, name the vendor and licence, and it becomes its own
+section under *Sources*. Nested zips are handled — download-centre bundles
+often wrap everything in an outer archive.
 
-Desde terminal:
+From the terminal:
 
 ```bash
-./sonidos add ~/Downloads/mi-libreria.zip \
-    --vendor "Nombre del estudio" \
-    --license "Comercial royalty-free"
+./sonidos add ~/Downloads/my-library.zip \
+    --vendor "Studio name" \
+    --license "Commercial royalty-free"
 ```
 
-No copia nada: enlaza, así que no ocupa espacio extra.
+Nothing is copied — it links, so it costs no extra space.
 
 ---
 
-## De dónde salen los sonidos
+## Where the sounds come from
 
-| Fuente | Licencia | Uso comercial | Atribución |
+| Source | Licence | Commercial use | Attribution |
 |---|---|---|---|
-| [Sonniss GDC Bundles](https://sonniss.com/gameaudiogdc) | Royalty-free propia | Sí, ilimitado | No |
-| [Kenney.nl](https://kenney.nl/assets/category:Audio) | CC0 | Sí | No |
-| [Freesound](https://freesound.org) (opcional) | CC0 / CC-BY | Sí | Solo CC-BY |
+| [Sonniss GDC Bundles](https://sonniss.com/gameaudiogdc) | Own royalty-free | Yes, unlimited | No |
+| [Kenney.nl](https://kenney.nl/assets/category:Audio) | CC0 | Yes | No |
+| [Freesound](https://freesound.org) (optional) | CC0 / CC-BY | Yes | CC-BY only |
 
-Todo lo que instala `install.sh` es de **uso comercial sin atribución**. Si
-añades Freesound, los CC-BY quedan listados en `CREDITS.md` con su autor y
-enlace, y la interfaz muestra la licencia de cada sonido.
+Everything `install.sh` fetches is **commercial-use without attribution**. Add
+Freesound and any CC-BY sounds are listed in `CREDITS.md` with author and link,
+while the interface shows each sound's licence as it plays.
 
 > [!IMPORTANT]
-> La licencia de Sonniss **prohíbe expresamente** usar su audio para entrenar
-> modelos de IA.
+> Sonniss's licence explicitly prohibits using their audio to train AI models.
 
-### Freesound (opcional)
+### Freesound (optional)
 
-Añade ~1.700 sonidos curados en calidad original. Necesitas credenciales
-OAuth2 de <https://freesound.org/apiv2/apply>:
+Adds ~1,700 curated sounds in original quality. Needs OAuth2 credentials from
+<https://freesound.org/apiv2/apply>:
 
 ```bash
 python3 tools/dl_freesound.py --setup
@@ -150,119 +152,117 @@ python3 tools/dl_freesound.py --run --budget-gb 5
 ./sonidos index
 ```
 
-Respeta los límites de su API (60 peticiones/minuto, 2.000/día).
+Respects their API limits (60 requests/minute, 2,000/day).
 
 ---
 
-## Cómo funciona la búsqueda
+## How the search works
 
-Este fue el problema difícil. La librería está en inglés y con nomenclatura
-[UCS](https://universalcategorysystem.com/) abreviada (`FEETHors_Draft Horse
-Walk`, `VEHWagn_Wood Cart`), así que buscar `caballo` no daba nada y `horse`
-solo encontraba 6 de los 15 sonidos equinos que había.
+This was the hard part. The library is in English and uses abbreviated
+[UCS](https://universalcategorysystem.com/) naming (`FEETHors_Draft Horse
+Walk`, `VEHWagn_Wood Cart`), so searching `caballo` returned nothing and even
+`horse` found only 6 of the 15 equine sounds present.
 
-La estrategia es **expandir los documentos al indexar, no las consultas**:
+The trick is to **expand the documents at index time, not the queries**:
 
-1. `tools/thesaurus.py` define 109 conceptos con ~1.200 términos en español e
-   inglés. Al indexar `Hoof 2_Rocks_Gallop-4-Step` se le añaden *caballo,
-   horse, galope, relincho, casco, equino…*, de modo que la palabra que
-   escribas ya está literalmente en su texto de búsqueda.
-2. Los prefijos UCS se separan y traducen: `FEETHors` → `feet` + `hors` →
-   pasos + caballo.
-3. En consulta (`web/search.js`) hay tres pasadas de precisión decreciente:
-   token exacto → prefijo → trigramas. El ranking es BM25, reforzado cuando la
-   coincidencia cae en el nombre del archivo.
-4. *Parecidos* usa similitud coseno en el espacio TF-IDF.
+1. `tools/thesaurus.py` defines 109 concepts holding ~1,200 Spanish and English
+   terms. Indexing `Hoof 2_Rocks_Gallop-4-Step` appends *caballo, horse,
+   galope, relincho, casco, equino…*, so whatever you type is already literally
+   in its search text.
+2. UCS prefixes get split and translated: `FEETHors` → `feet` + `hors` →
+   footsteps + horse.
+3. At query time (`web/search.js`) three passes of decreasing precision run:
+   exact token → prefix → trigram. Ranking is BM25, boosted when the match
+   lands in the filename.
+4. *Similar sounds* uses cosine similarity in TF-IDF space.
 
-Sobre 5.137 sonidos: 8.281 términos, índice construido en ~150 ms y consultas
-en ~0,2 ms. Todo en el navegador, sin servidor de búsqueda.
+Across 5,165 sounds: 8,281 terms, index built in ~150 ms, queries in ~0.2 ms.
+All in the browser, no search server.
 
 ---
 
-## Estructura
+## Layout
 
 ```
-├── install.sh           instalador
-├── sonidos              lanzador (abrir, index, estado, add, icono)
+├── install.sh           installer
+├── sonidos              launcher (abrir, index, estado, add, icono)
 ├── tools/
-│   ├── categories.py    taxonomía y clasificador por palabras clave
-│   ├── thesaurus.py     tesauro ES-EN y abreviaturas UCS
-│   ├── build_index.py   dedupe, metadatos, clasificación, index.json
-│   ├── serve.py         servidor local (Range, export, import)
+│   ├── categories.py    taxonomy and keyword classifier
+│   ├── thesaurus.py     ES-EN thesaurus and UCS abbreviations
+│   ├── build_index.py   dedupe, metadata, classification, index.json
+│   ├── serve.py         local server (Range, export, import)
 │   ├── crawl_gamesounds.py / dl_gamesounds.py / dl_kenney.py / dl_freesound.py
-│   ├── add_pack.py      añadir librerías propias
+│   ├── add_pack.py      add your own libraries
 │   └── install_desktop.sh
-└── web/                 interfaz: HTML + CSS + JS sin dependencias
+└── web/                 interface: HTML + CSS + JS, no dependencies
 ```
 
-Lo generado (`library/`, `_staging/`, `index.json`, `CREDITS.md`) no está en el
-repositorio: el repo es solo la herramienta, el audio lo descarga cada quien.
+Generated content (`library/`, `_staging/`, `index.json`, `CREDITS.md`) is not
+in the repo: this is the tool, you download your own audio.
 
-### Decisiones de diseño
+### Design notes
 
-- **Enlaces duros en vez de copias.** `library/` y `exports/` comparten inodos
-  con `_staging/`, así que la estructura por categorías no duplica los ~20 GB.
-- **Deduplicado por tamaño + hash de los primeros 256 KB.** Hashear 20 GB
-  enteros sería lentísimo y para duplicados exactos esto basta.
-- **El servidor implementa peticiones `Range`**, que `http.server` no trae. Sin
-  ellas el navegador no puede hacer seek: descarga el WAV entero antes de sonar.
-- **La forma de onda se decodifica en el navegador** solo para archivos de menos
-  de 10 MB; por encima se muestra una barra lisa.
-- **El servidor escucha en las dos loopback.** `sfx.localhost` resuelve antes a
-  `::1` que a `127.0.0.1`, y atendiendo solo IPv4 el navegador se come un
-  rechazo de conexión antes de reintentar.
+- **Hard links instead of copies.** `library/` and `exports/` share inodes with
+  `_staging/`, so the per-category structure doesn't duplicate ~20 GB.
+- **Dedupe by size + hash of the first 256 KB.** Hashing 20 GB in full would be
+  glacial, and for exact duplicates this is enough.
+- **The server implements `Range` requests**, which `http.server` lacks. Without
+  them the browser can't seek — it downloads the whole WAV before playing.
+- **Waveforms are decoded in the browser** only for files under 10 MB; above
+  that you get a plain bar.
+- **The server listens on both loopback addresses.** `sfx.localhost` resolves to
+  `::1` before `127.0.0.1`, and serving IPv4 only makes the browser eat a
+  connection refusal before retrying.
+- **`[hidden] { display: none !important }` is deliberate.** Any rule setting
+  `display` outbeats the browser's default for the `hidden` attribute, which
+  left the modal and player bar permanently visible.
 
 ---
 
-## Contribuir
+## Contributing
 
-Se agradecen especialmente:
+Most valuable contributions, in order:
 
-**Términos para el tesauro.** Es lo que más mejora la herramienta y lo más fácil
-de aportar. Si buscas algo y no lo encuentra, abre un issue con la consulta y el
-sonido que esperabas, o añade el término en `tools/thesaurus.py`:
+**Thesaurus terms.** This is what improves the tool most and is the easiest to
+contribute. If you search for something and don't find it, open an issue with
+the query and the sound you expected, or add the term to `tools/thesaurus.py`:
 
 ```python
 ["horse", "caballo", "equino", "pony", "hoof", "gallop", "relincho", ...],
 ```
 
-Cada grupo son términos intercambiables en ambos idiomas. Dos trampas que
-conviene conocer antes de tocarlo, ambas descubiertas probando con datos
-reales y anotadas en el código:
+Each group holds interchangeable terms across both languages. Two traps worth
+knowing, both found by testing against real data and annotated in the code:
 
-- **Los sinónimos ambiguos arrastran ruido.** `snort` (resoplido) estaba en el
-  concepto de caballo y sacaba cerdos; `plate` estaba en el de cristal por
-  «plato» y sacaba placas metálicas.
-- **Los nombres de proveedor contaminan.** Un pack de *"Digital Rain Lab"* metía
-  «agua» y «lluvia» en todos sus archivos. Por eso el nombre del pack entra como
-  texto literal y no activa conceptos.
+- **Ambiguous synonyms drag in noise.** `snort` sat in the horse concept and
+  pulled in pigs; `plate` sat in the glass concept (via Spanish *plato*) and
+  pulled in metal plates.
+- **Vendor names contaminate.** A pack from *"Digital Rain Lab"* injected
+  "water" and "rain" into every one of its files. That's why the pack name is
+  indexed as literal text and never activates concepts.
 
-**Fuentes nuevas.** Si conoces librerías gratuitas de uso comercial que se
-puedan descargar por script, abre un issue. Ten en cuenta que muchas están tras
-Cloudflare y devuelven 403 a `curl`.
+**New sources.** If you know free commercial-use libraries that can be fetched
+by script, open an issue. Be aware many sit behind Cloudflare and return 403
+to `curl`.
 
-**Categorías y palabras clave** en `tools/categories.py`, si ves clasificaciones
-que fallan.
+**Categories and keywords** in `tools/categories.py`, if you spot
+misclassifications.
 
-### Antes de enviar un PR
+### Before opening a PR
 
 ```bash
-python3 -m py_compile tools/*.py     # sintaxis Python
-node --check web/app.js              # sintaxis JS
-python3 tools/build_index.py         # debe terminar con código 0
+python3 -m py_compile tools/*.py     # Python syntax
+node --check web/app.js              # JS syntax
+python3 tools/build_index.py         # must exit 0
 ```
 
-El proyecto no tiene dependencias más allá de `requests`, y la interfaz no usa
-ningún framework. Mantengámoslo así.
-
-> [!WARNING]
-> No se aceptan aportaciones que incluyan audio con derechos, enlaces a
-> librerías comerciales filtradas, ni formas de sortear los muros de pago.
+The project has no dependencies beyond `requests`, and the interface uses no
+framework. Let's keep it that way.
 
 ---
 
-## Licencia
+## Licence
 
-Código bajo [MIT](LICENSE). **Los archivos de audio no están cubiertos por
-ella**: cada sonido conserva la licencia de su proveedor original. Consulta el
-`CREDITS.md` que se genera en cada indexado.
+Code under [MIT](LICENSE). **Audio files are not covered by it** — each sound
+keeps its original provider's licence. See the `CREDITS.md` generated on every
+index build.

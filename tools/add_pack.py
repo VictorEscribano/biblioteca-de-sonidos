@@ -19,6 +19,7 @@ import os
 import re
 import shutil
 import sys
+import tempfile
 import zipfile
 from pathlib import Path
 
@@ -41,11 +42,21 @@ def load_registry():
     return {}
 
 
-def extract_zip(src, dest):
+def extract_zip(src, dest, depth=0, max_depth=3):
+    """Extrae los audios de un zip, entrando en los zip anidados.
+
+    Los Download Center suelen servir un zip que solo contiene otro zip (o uno
+    por libreria), asi que mirar un unico nivel devolvia cero archivos.
+    """
     n = 0
+    nested = []
     with zipfile.ZipFile(src) as z:
         for m in z.namelist():
-            if Path(m).suffix.lower() not in AUDIO_EXT:
+            suffix = Path(m).suffix.lower()
+            if suffix == ".zip" and depth < max_depth:
+                nested.append(m)
+                continue
+            if suffix not in AUDIO_EXT:
                 continue
             # Conserva subcarpetas pero sanea contra zip-slip.
             parts = [p for p in Path(m.replace("\\", "/")).parts
@@ -61,6 +72,21 @@ def extract_zip(src, dest):
             with z.open(m) as fsrc, open(target, "wb") as fdst:
                 shutil.copyfileobj(fsrc, fdst)
             n += 1
+
+        for m in nested:
+            inner_name = Path(m).stem
+            print(f"    zip anidado: {inner_name}")
+            with tempfile.NamedTemporaryFile(suffix=".zip", delete=False) as tmp:
+                with z.open(m) as fsrc:
+                    shutil.copyfileobj(fsrc, tmp)
+                tmp_path = Path(tmp.name)
+            try:
+                n += extract_zip(tmp_path, dest / safe_name(inner_name),
+                                 depth + 1, max_depth)
+            except zipfile.BadZipFile:
+                print(f"    (no es un zip válido, se ignora)")
+            finally:
+                tmp_path.unlink(missing_ok=True)
     return n
 
 

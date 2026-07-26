@@ -495,6 +495,10 @@ function bindUI() {
   // --- atajos de teclado ---
   document.addEventListener('keydown', (e) => {
     const typing = /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName);
+    if (e.key === 'Escape' && !$('#importModal').hidden) {
+      e.preventDefault();
+      return closeImport();
+    }
     if (e.key === '/' && !typing) { e.preventDefault(); $('#search').focus(); return; }
     if (e.key === 'Escape' && typing) { e.target.blur(); return; }
     if (typing) return;

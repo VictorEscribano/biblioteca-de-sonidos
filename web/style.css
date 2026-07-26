@@ -17,6 +17,11 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* El atributo `hidden` trae display:none desde la hoja del navegador, pero
+   cualquier regla propia con `display` lo pisa por especificidad. Sin esto,
+   el modal, la barra del reproductor y el chip de contexto se veían siempre.*/
+[hidden] { display: none !important; }
+
 html, body {
   height: 100%;
   background: var(--bg);
